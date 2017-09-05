@@ -17,23 +17,18 @@ public class Paddle : MonoBehaviour
         GetComponent<Renderer>().material.SetColor("_Color2", colors[1]);
     }
 	
-	// Update is called once per frame
 	void Update()
     {
-        float movementDirection = Input.GetAxisRaw("Player" + playerNumber.ToString());
+        float movementDirection = Input.GetAxisRaw("Player" + playerNumber.ToString() + "Movement");
         transform.Translate(Vector3.up * movementDirection * movementSpeed * Time.deltaTime);
 
-        if(transform.position.y >= 3.5f)
+        if(transform.position.y > 3.5f)
         {
-            Vector3 tempTransform = transform.position;
-            tempTransform.y = 3.5f;
-            transform.position = tempTransform;
+            transform.position += Vector3.down * (transform.position.y - 3.5f);
         }
-        else if (transform.position.y <= -3.5f)
+        else if(transform.position.y < -3.5f)
         {
-            Vector3 tempTransform = transform.position;
-            tempTransform.y = -3.5f;
-            transform.position = tempTransform;
+            transform.position += Vector3.up * (-transform.position.y - 3.5f);
         }
     }
 }

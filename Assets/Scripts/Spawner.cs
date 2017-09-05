@@ -16,11 +16,11 @@ public class Spawner : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        foreach(objectSpawnSettings currentSettings in options)
+        for(int i = 0; i < options.Length; i++)
         {
-            for(int i = 0; i < currentSettings.Number; i++)
+            for(int j = 0; j < options[i].Number; j++)
             {
-                Instantiate(currentSettings.Object);
+                Instantiate(options[i].Object);
             }
         }	
 	}

@@ -141,13 +141,13 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0.79999924
+        value: 0.75
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
         time: 1
-        value: 0.20000076
+        value: 0.24999619
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3521e5205ec8c248aca8eeb4db11c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMovementSpeed: 5
-  movementSpeed: 0
-  direction: {x: 0, y: 0, z: 0}
+  movementSpeed: 5
+  accelerationRate: 0.25
+  spinSpeed: 5
 --- !u!135 &135645091599807924
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -214,5 +214,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.439199
-  m_Center: {x: -0.0009910017, y: -0.0063279867, z: -0.003923252}
+  m_Radius: 0.427984
+  m_Center: {x: 0, y: 0, z: 0}
