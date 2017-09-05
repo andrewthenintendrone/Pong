@@ -23,16 +23,16 @@ public class Paddle : MonoBehaviour
         float movementDirection = Input.GetAxisRaw("Player" + playerNumber.ToString());
         transform.Translate(Vector3.up * movementDirection * movementSpeed * Time.deltaTime);
 
-        if(transform.position.y >= 3)
+        if(transform.position.y >= 3.5f)
         {
             Vector3 tempTransform = transform.position;
-            tempTransform.y = 3;
+            tempTransform.y = 3.5f;
             transform.position = tempTransform;
         }
-        else if (transform.position.y <= -3)
+        else if (transform.position.y <= -3.5f)
         {
             Vector3 tempTransform = transform.position;
-            tempTransform.y = -3;
+            tempTransform.y = -3.5f;
             transform.position = tempTransform;
         }
     }
