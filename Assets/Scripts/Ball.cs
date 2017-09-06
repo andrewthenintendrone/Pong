@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float movementSpeed = 5.0f;
+    public float baseSpeed = 5.0f;
+    private float currentSpeed;
     public float accelerationRate = 0.1f;
     public float spinSpeed = 5.0f;
 
@@ -37,7 +38,15 @@ public class Ball : MonoBehaviour
     // triggered when this object touches a collider
     void OnCollisionEnter(Collision collision)
     {
-        rb.AddForce(rb.velocity.normalized * accelerationRate, ForceMode.Impulse);
+        
+    }
+
+    void FixedUpdate()
+    {
+        if(rb.velocity.sqrMagnitude < baseSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * baseSpeed;
+        }
     }
 
     // resets the ball's position and velocity
@@ -69,7 +78,7 @@ public class Ball : MonoBehaviour
         // apply the random rotation
         rb.transform.rotation = (Quaternion.Euler(new Vector3(0.0f, 0.0f, randomAngle)));
         // add force in that direction
-        rb.AddForce(transform.right * movementSpeed, ForceMode.Impulse);
+        rb.AddForce(transform.right * baseSpeed, ForceMode.Impulse);
         // choose a random direction to spin in
         Vector3 spin = Random.insideUnitCircle.normalized * spinSpeed;
         // add torque in that direction

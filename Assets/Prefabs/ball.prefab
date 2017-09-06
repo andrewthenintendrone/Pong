@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54955969054311846}
   - component: {fileID: 114710808127199596}
   - component: {fileID: 96897993718235544}
+  - component: {fileID: 123584898361570728}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 70eb6cfdbc971774d91c97bd131d2138, type: 2}
+  - {fileID: 2100000, guid: 3391d6a38c7d805448a3524746cea4e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +99,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 8
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!96 &96897993718235544
 TrailRenderer:
   serializedVersion: 2
@@ -147,7 +148,7 @@ TrailRenderer:
         tangentMode: 0
       - serializedVersion: 2
         time: 1
-        value: 0.24999619
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -173,7 +174,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 58982
+      atime1: 49151
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -204,6 +205,21 @@ MonoBehaviour:
   movementSpeed: 5
   accelerationRate: 0.25
   spinSpeed: 5
+--- !u!123 &123584898361570728
+LensFlare:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261505146002524}
+  m_Enabled: 1
+  m_Flare: {fileID: 12100000, guid: ace63817bd86b634bac7a0e96fa2d99a, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Brightness: 1
+  m_FadeSpeed: 3
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 6
+  m_Directional: 1
 --- !u!135 &135645091599807924
 SphereCollider:
   m_ObjectHideFlags: 1
