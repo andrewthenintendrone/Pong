@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
-    public float baseSpeed = 5.0f;
+    [SerializeField]
+    private float baseSpeed = 5.0f;
+    [SerializeField]
     private float currentSpeed;
-    public float accelerationRate = 0.1f;
-    public float spinSpeed = 5.0f;
+    [SerializeField]
+    private float accelerationRate = 0.1f;
+    [SerializeField]
+    private float spinSpeed = 5.0f;
+    [SerializeField]
+    private int[] scores = new int[2];
+
 
     private Rigidbody rb;
     private TrailRenderer trail;
     private Renderer rend;
+    private Text scoreboard;
 
 	// Use this for initialization
 	void Start ()
@@ -20,6 +29,8 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trail = GetComponent<TrailRenderer>();
         rend = GetComponent<Renderer>();
+        scoreboard = GameObject.Find("scoreboard").GetComponent<Text>();
+
         // reset and launch the ball after 1 second
         resetBall();
         StartCoroutine(LaunchBall(1.0f));
@@ -30,23 +41,24 @@ public class Ball : MonoBehaviour
     {
         if (other.gameObject.tag == "Respawn")
         {
+            if (transform.position.x > 0)
+            {
+                scores[0]++;
+            }
+            else
+            {
+                scores[1]++;
+            }
+            scoreboard.text = scores[0] + " : " + scores[1];
             resetBall();
             StartCoroutine(LaunchBall(0.25f));
         }
     }
 
-    // triggered when this object touches a collider
-    void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        
-    }
-
-    void FixedUpdate()
-    {
-        if(rb.velocity.sqrMagnitude < baseSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * baseSpeed;
-        }
+        currentSpeed += accelerationRate * Time.deltaTime;
+        rb.velocity = rb.velocity.normalized * currentSpeed;
     }
 
     // resets the ball's position and velocity
@@ -66,6 +78,8 @@ public class Ball : MonoBehaviour
         // reset position to center
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
+
+        currentSpeed = baseSpeed;
     }
 
     // launches the ball after a certain number of sceonds

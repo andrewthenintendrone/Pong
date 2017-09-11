@@ -7,34 +7,100 @@ public class Paddle : MonoBehaviour
     public Color[] colors = new Color[2];
     public int playerNumber = 1;
     public float movementSpeed = 500.0f;
-    public float rotationSpeed = 720.0f;
-
-    private Rigidbody rb;
 
 	// Use this for initialization
 	void Start()
     {
-        rb = GetComponent<Rigidbody>();
         // set colors
         GetComponent<Renderer>().material.SetColor("_Color1", colors[0]);
         GetComponent<Renderer>().material.SetColor("_Color2", colors[1]);
     }
 	
-	void FixedUpdate()
+	void Update()
     {
-        float movementDirection = Input.GetAxisRaw("Player" + playerNumber + "Movement");
-        rb.velocity = (Vector3.up * movementDirection * movementSpeed * Time.fixedDeltaTime);
+        HandleInput();
+    }
 
-        if(transform.position.y > 3.5f)
+    void HandleInput()
+    {
+        float movementDirection = 0.0f;
+
+        // windows uses arrow keys and ws
+        // mac and linux?
+#if UNITY_STANDALONE_WIN
+        movementDirection = Input.GetAxisRaw("Player" + playerNumber + "Movement");
+#endif
+
+        // editor uses standard windows controls and fake touch system
+#if UNITY_EDITOR
+        movementDirection = Input.GetAxisRaw("Player" + playerNumber + "Movement");
+
+        bool click = Input.GetMouseButton(0);
+
+        if (click)
+        {
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 screenMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 tempPos = transform.position;
+
+            if (playerNumber == 1)
+            {
+                if(mousePos.x < Screen.width / 3)
+                {
+                    tempPos.y = screenMousePos.y;
+                }
+            }
+            else
+            {
+                if(mousePos.x > Screen.width * 2 / 3)
+                {
+                    tempPos.y = screenMousePos.y;
+                }
+            }
+            transform.position = tempPos;
+        }
+#endif
+
+        // android uses touch system
+#if UNITY_ANDROID
+
+        Touch[] touches = Input.touches;
+
+        if(touches.Length > 0)
+        {
+            Debug.Log(touches.Length + "touches");
+            if (playerNumber == 1)
+            {
+                for(int i = 0; i < touches.Length; i++)
+                {
+                    if(touches[i].position.x < Screen.width / 3)
+                    {
+                        movementDirection += (touches[i].position.y < Screen.height / 2 ? 1.0f : -1.0f);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < touches.Length; i++)
+                {
+                    if (touches[i].position.x > Screen.width * 2 / 3)
+                    {
+                        movementDirection += (touches[i].position.y < Screen.height / 2 ? 1.0f : -1.0f);
+                    }
+                }
+            }
+        }
+#endif
+
+        transform.Translate(Vector3.up * movementDirection * movementSpeed * Time.deltaTime);
+
+        if (transform.position.y > 3.5f)
         {
             transform.position += Vector3.down * (transform.position.y - 3.5f);
         }
-        else if(transform.position.y < -3.5f)
+        else if (transform.position.y < -3.5f)
         {
             transform.position += Vector3.up * (-transform.position.y - 3.5f);
         }
-
-        float rotateDirection = Input.GetAxisRaw("Player" + playerNumber + "Rotation");
-        rb.angularVelocity = (Vector3.back * rotateDirection * rotationSpeed * Time.fixedDeltaTime);
     }
 }
