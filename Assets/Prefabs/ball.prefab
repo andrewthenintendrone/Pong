@@ -132,7 +132,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 2
@@ -202,9 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3521e5205ec8c248aca8eeb4db11c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  baseSpeed: 5
+  currentSpeed: 0
   accelerationRate: 0.25
   spinSpeed: 5
+  scores: 0000000000000000
 --- !u!123 &123584898361570728
 LensFlare:
   m_ObjectHideFlags: 1

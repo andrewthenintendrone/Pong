@@ -68,26 +68,27 @@ public class Paddle : MonoBehaviour
 
         if(touches.Length > 0)
         {
-            Debug.Log(touches.Length + "touches");
-            if (playerNumber == 1)
+            foreach (Touch currentTouch in touches)
             {
-                for(int i = 0; i < touches.Length; i++)
+                Vector2 mousePos = currentTouch.position;
+                Vector2 screenMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+                Vector3 tempPos = transform.position;
+
+                if (playerNumber == 1)
                 {
-                    if(touches[i].position.x < Screen.width / 3)
+                    if (mousePos.x < Screen.width / 3)
                     {
-                        movementDirection += (touches[i].position.y < Screen.height / 2 ? 1.0f : -1.0f);
+                        tempPos.y = screenMousePos.y;
                     }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < touches.Length; i++)
+                else
                 {
-                    if (touches[i].position.x > Screen.width * 2 / 3)
+                    if (mousePos.x > Screen.width * 2 / 3)
                     {
-                        movementDirection += (touches[i].position.y < Screen.height / 2 ? 1.0f : -1.0f);
+                        tempPos.y = screenMousePos.y;
                     }
                 }
+                transform.position = tempPos;
             }
         }
 #endif
