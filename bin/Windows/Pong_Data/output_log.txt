@@ -19,13 +19,13 @@ Platform assembly: C:\Users\s170837\Documents\Pong\bin\Windows\Pong_Data\Managed
 Loading C:\Users\s170837\Documents\Pong\bin\Windows\Pong_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: C:\Users\s170837\Documents\Pong\bin\Windows\Pong_Data\Managed\System.dll (this message is harmless)
 Platform assembly: C:\Users\s170837\Documents\Pong\bin\Windows\Pong_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.264 seconds
+- Completed reload, in  0.019 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.727820 ms
+UnloadTime: 0.757306 ms
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 450 -> priority: 1 
-  Thread -> id: 1658 -> priority: 1 
-  Thread -> id: 108c -> priority: 1 
-  Thread -> id: 1214 -> priority: 1 
+  Thread -> id: 2d6c -> priority: 1 
+  Thread -> id: 590 -> priority: 1 
+  Thread -> id: 2218 -> priority: 1 
+  Thread -> id: 968 -> priority: 1 
