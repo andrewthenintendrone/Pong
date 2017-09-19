@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// makes this struct show up in the inspector for editing
 [System.Serializable]
 public struct objectSpawnSettings
 {
-    public GameObject Object;
-    public uint Number;
+    public GameObject Object; // reference to a gameobject to spawn
+    public uint Number; // number of that object to spawn
 }
 
+// spawns things into the level
 public class Spawner : MonoBehaviour
 {
-    public objectSpawnSettings[] options;
+    // list of object spawn settings
+    public List<objectSpawnSettings> options = new List<objectSpawnSettings>();
 
-	// Use this for initialization
 	void Start ()
     {
-        for(int i = 0; i < options.Length; i++)
+        // instantiate all gameobjects from options
+        for(int i = 0; i < options.Count; i++)
         {
             for(int j = 0; j < options[i].Number; j++)
             {

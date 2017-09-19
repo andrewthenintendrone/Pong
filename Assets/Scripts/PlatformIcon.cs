@@ -18,14 +18,17 @@ public class PlatformIconEditor : Editor
 }
 #endif
 
+// PlatformIcon inherits from Image
 public class PlatformIcon : Image
 {
+    // icon to display on windows
     public Sprite windowsIcon;
+    // icon to display on android
     public Sprite androidIcon;
 
     protected override void Start()
     {
-
+        // change our sprite to match the platform
 #if UNITY_STANDALONE_WIN
 
         sprite = windowsIcon;
@@ -39,13 +42,16 @@ public class PlatformIcon : Image
 #endif
 
 #if UNITY_EDITOR
+
+        // reset the sprite while in the editor and not playing
         if (!UnityEditor.EditorApplication.isPlaying)
         {
             sprite = null;
         }
+
 #endif
 
-        base.Awake();
+        base.Start();
     }
 }
 
