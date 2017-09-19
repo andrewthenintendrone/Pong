@@ -23,7 +23,7 @@ DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 OutputBaseFilename=setup
-SetupIconFile=C:\Users\s171097\Documents\GitHub\Pong\Assets\Textures\favicon.ico
+SetupIconFile=C:\Users\s171097\Documents\GitHub\Pong\Assets\Textures\icons\Icon.ico
 Compression=lzma
 SolidCompression=yes
 
